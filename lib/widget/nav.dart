@@ -25,6 +25,10 @@ class _NavState extends State<Nav> {
       body: PageView(
         children: <Widget>[HomePage(), SearchPage(), TravelPage(), MePage()],
         controller: _controller,
+        onPageChanged:(index){
+          _controller.jumpToPage(index);
+          setState(() => currentIndex = index);
+        } ,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
