@@ -114,8 +114,11 @@ searchModelDataFromJson(SearchModelData data, Map<String, dynamic> json) {
 	if (json['traveldays'] != null) {
 		data.traveldays = json['traveldays']?.toInt();
 	}
-	if (json['districtName'] != null) {
-		data.districtName = json['districtName']?.toString();
+	if (json['districtname'] != null) {
+		data.districtname = json['districtname']?.toString();
+	}
+	if (json['price'] != null) {
+		data.price = json['price']?.toString();
 	}
 	return data;
 }
@@ -142,7 +145,8 @@ Map<String, dynamic> searchModelDataToJson(SearchModelData entity) {
 	data['startScore'] = entity.startScore;
 	data['parentDistrictId'] = entity.parentDistrictId;
 	data['traveldays'] = entity.traveldays;
-	data['districtName'] = entity.districtName;
+	data['districtname'] = entity.districtname;
+	data['price'] = entity.price;
 	return data;
 }
 

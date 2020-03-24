@@ -4,9 +4,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:trip/config/url.dart';
-import 'package:trip/generated/json/home_model_entity_helper.dart';
-import 'package:trip/io/http/dio.dart';
+import 'package:trip/io/dao/dao.dart';
 import 'package:trip/model/home_model_entity.dart';
+import 'package:trip/pages/search_page.dart';
 import 'package:trip/widget/local.dart';
 import 'package:trip/widget/scales_box_nav.dart';
 import 'package:trip/widget/search_bar.dart';
@@ -44,20 +44,12 @@ class _HomePageState extends State<HomePage>
     //这里有点坑，必须使用broadcast，否则热启动的时候回提示多次订阅
     _streamController = StreamController.broadcast();
     super.initState();
-    _future = callBack();
-  }
-
-  Future<HomeModelEntity> callBack() async {
-    Response res = await DioFactory.instance.request(homeUrl, method: "GET");
-    HomeModelEntity homeModelEntity = HomeModelEntity();
-    homeModelEntityFromJson(homeModelEntity, json.decode(res.toString()));
-    print(homeModelEntity.config.searchUrl);
-    return homeModelEntity;
+    _future = homeRefresh(homeUrl);
   }
 
   Future refresh() async {
     setState(() {
-      _future = callBack();
+      _future = homeRefresh(homeUrl);
     });
   }
 
@@ -177,10 +169,8 @@ class _HomePageState extends State<HomePage>
                   searchBarType: alpha > 0.2
                       ? SearchBarType.homeLight
                       : SearchBarType.home,
-                  inputBoxClick: () {},
-                  speakClick: () {},
+                  inputBoxClick: _jumpSearchPage,
                   defaultText: SEARCH_BAR_DEFAULT_TEXT,
-                  leftBtnClick: () {},
                 ),
               ),
             ),
@@ -197,15 +187,10 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-//  SearchBar(
-//  searchBarType:
-//  alpha > 0.2 ? SearchBarType.homeLight : SearchBarType.home,
-//  inputBoxClick: () {},
-//  speakClick: () {},
-//  defaultText: SEARCH_BAR_DEFAULT_TEXT,
-//  leftBtnClick: () {},
-//  );
-
   @override
   bool get wantKeepAlive => true;
+
+  void _jumpSearchPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage(hideLeft:false,hint: '请输入搜索内容',)));
+  }
 }

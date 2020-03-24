@@ -8,6 +8,7 @@ class SearchModelEntity with JsonConvert<SearchModelEntity> {
 	List<dynamic> resultTypes;
 	bool isLastPage;
 	List<dynamic> subResultTypes;
+	String keyWord;
 }
 
 class SearchModelData with JsonConvert<SearchModelData> {
@@ -31,7 +32,9 @@ class SearchModelData with JsonConvert<SearchModelData> {
 	int startScore;
 	int parentDistrictId;
 	int traveldays;
-	String districtName;
+	String districtname;
+	String price;
+
 }
 
 class SearchModelHead with JsonConvert<SearchModelHead> {

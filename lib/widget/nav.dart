@@ -28,6 +28,7 @@ class _NavState extends State<Nav> {
         onPageChanged:(index){
           _controller.jumpToPage(index);
           setState(() => currentIndex = index);
+          FocusScope.of(context).requestFocus(FocusNode());
         } ,
       ),
       bottomNavigationBar: BottomNavigationBar(
