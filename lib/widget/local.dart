@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/model/home_model_entity.dart';
 
@@ -48,7 +49,8 @@ class LocalWidget extends StatelessWidget {
       },
       child: Column(
         children: <Widget>[
-          Image.network(localNav.icon, width: 32.0, height: 32.0),
+          CachedNetworkImage(
+              width: 32.0, height: 32.0, imageUrl: localNav.icon),
           Container(padding: EdgeInsets.only(top: 3.0)),
           Text(
             localNav.title,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/model/home_model_entity.dart';
 
@@ -47,7 +48,7 @@ class SubNavWidget extends StatelessWidget {
         },
         child: Column(
           children: <Widget>[
-            Image.network(subNav.icon, width: 16.0, height: 16.0),
+            CachedNetworkImage(imageUrl: subNav.icon, width: 16.0, height: 16.0),
             Container(padding: EdgeInsets.only(top: 3.0)),
             Text(
               subNav.title,

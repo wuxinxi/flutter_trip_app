@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_splash_screen/flutter_splash_screen.dart';
@@ -46,7 +47,6 @@ class _HomePageState extends State<HomePage>
     _streamController = StreamController.broadcast();
     super.initState();
     _future = homeRefresh(homeUrl);
-    hideScreen();
   }
 
   Future refresh() async {
@@ -94,8 +94,9 @@ class _HomePageState extends State<HomePage>
                             child: Swiper(
                               itemCount: homeModelEntity.bannerList.length,
                               itemBuilder: (context, index) {
-                                return Image.network(
-                                    homeModelEntity.bannerList[index].icon,
+                                return CachedNetworkImage(
+                                    imageUrl:
+                                        homeModelEntity.bannerList[index].icon,
                                     fit: BoxFit.fill);
                               },
                               autoplay: true,
@@ -193,12 +194,12 @@ class _HomePageState extends State<HomePage>
   bool get wantKeepAlive => true;
 
   void _jumpSearchPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage(hideLeft:false,hint: '请输入搜索内容',)));
-  }
-
-  Future<void> hideScreen() async {
-    Future.delayed(Duration(milliseconds: 3600), () {
-      FlutterSplashScreen.hide();
-    });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => SearchPage(
+                  hideLeft: false,
+                  hint: '请输入搜索内容',
+                )));
   }
 }

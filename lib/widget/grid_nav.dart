@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:trip/model/home_model_entity.dart';
 
@@ -123,12 +124,11 @@ class GirdNav extends StatelessWidget {
         Stack(
           alignment: Alignment.topCenter,
           children: <Widget>[
-            Image.network(
-              icon,
-              height: 88,
-              width: 121,
-              alignment: AlignmentDirectional.bottomEnd,
-            ),
+            CachedNetworkImage(
+                height: 88,
+                width: 121,
+                alignment: AlignmentDirectional.bottomEnd,
+                imageUrl: icon),
             Container(
               margin: EdgeInsets.only(top: 15.0),
               child: Text(title,

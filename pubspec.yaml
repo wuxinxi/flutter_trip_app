@@ -26,7 +26,9 @@ dependencies:
   #轮播图Banner插件
   flutter_swiper: ^1.1.6
   #网络请求插件
-  dio: ^3.0.9
+  dio_http_cache: ^0.2.6
+  #图片缓存库
+  cached_network_image: ^2.0.0
   #WebView插件
   flutter_webview_plugin: ^0.3.10+1
   #sp

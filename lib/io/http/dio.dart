@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dio_http_cache/dio_http_cache.dart';
 
 class DioFactory {
   factory DioFactory() => _getInstance();
@@ -10,6 +11,7 @@ class DioFactory {
 
   DioFactory._internal() {
     dio = Dio();
+    dio.interceptors.add(DioCacheManager(CacheConfig()).interceptor);
   }
 
   static DioFactory _getInstance() {
@@ -22,11 +24,14 @@ class DioFactory {
   Future request(url, {method = 'POST', formData}) async {
     Dio dio = DioFactory.instance.dio;
     Response response;
+
     try {
       if (method == 'POST') {
-        response = await dio.post(url, data: formData);
+        response = await dio.post(url,
+            data: formData, options: buildCacheOptions(Duration(days: 7)));
       } else {
-        response = await dio.get(url);
+        response =
+            await dio.get(url, options: buildCacheOptions(Duration(days: 7)));
       }
       if (response.statusCode == 200) {
         return response;
