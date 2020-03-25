@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:trip/config/url.dart';
 import 'package:trip/io/dao/dao.dart';
 import 'package:trip/model/travel_tab_model.dart';
+import 'package:trip/pages/travel_tab_page.dart';
 
 class TravelPage extends StatefulWidget {
   @override
@@ -56,11 +57,6 @@ class _TravelPageState extends State<TravelPage>
                   if (_tabController == null) {
                     _tabController =
                         TabController(length: model.tabs.length, vsync: this);
-                    _tabController.addListener(() {
-                      if (_tabController.index == 5) {
-
-                      }
-                    });
                   }
                   return Column(
                     children: <Widget>[
@@ -130,11 +126,7 @@ class _TravelPageState extends State<TravelPage>
   _tabBarView() {
     List<Widget> items = [];
     for (int i = 0; i < 6; i++) {
-      items.add(Container(
-        color: Colors.grey,
-        alignment: Alignment.center,
-        child: Text('${(i + 1).toString()}'),
-      ));
+      items.add(TravelTabPage());
     }
     return items;
   }

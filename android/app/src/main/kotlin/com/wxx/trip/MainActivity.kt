@@ -6,6 +6,7 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity: FlutterActivity() {
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        //SplashScreen.show(this, true);
         GeneratedPluginRegistrant.registerWith(flutterEngine)
     }
 }

@@ -25,11 +25,12 @@ class _NavState extends State<Nav> {
       body: PageView(
         children: <Widget>[HomePage(), SearchPage(), TravelPage(), MePage()],
         controller: _controller,
-        onPageChanged:(index){
+        physics: NeverScrollableScrollPhysics(),
+        onPageChanged: (index) {
           _controller.jumpToPage(index);
           setState(() => currentIndex = index);
           FocusScope.of(context).requestFocus(FocusNode());
-        } ,
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

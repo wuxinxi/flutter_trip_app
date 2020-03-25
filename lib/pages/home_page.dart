@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_splash_screen/flutter_splash_screen.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:trip/config/url.dart';
 import 'package:trip/io/dao/dao.dart';
@@ -45,6 +46,7 @@ class _HomePageState extends State<HomePage>
     _streamController = StreamController.broadcast();
     super.initState();
     _future = homeRefresh(homeUrl);
+    hideScreen();
   }
 
   Future refresh() async {
@@ -192,5 +194,11 @@ class _HomePageState extends State<HomePage>
 
   void _jumpSearchPage() {
     Navigator.push(context, MaterialPageRoute(builder: (context)=>SearchPage(hideLeft:false,hint: '请输入搜索内容',)));
+  }
+
+  Future<void> hideScreen() async {
+    Future.delayed(Duration(milliseconds: 3600), () {
+      FlutterSplashScreen.hide();
+    });
   }
 }
