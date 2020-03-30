@@ -187,6 +187,8 @@ class _SearchPageState extends State<SearchPage>
     List<String> arr = word.split(keyword);
     TextStyle normalStyle = TextStyle(fontSize: 16, color: Colors.black87);
     TextStyle keywordStyle = TextStyle(fontSize: 16, color: Colors.orange);
+    //print('android compiled'.split('d'));  [an, roi,  compile, ]
+    //根据上述得知，需要在(i + 1) % 2 == 0的位置上增加关键词
     for (int i = 0; i < arr.length; i++) {
       if ((i + 1) % 2 == 0) {
         spans.add(TextSpan(text: keyword, style: keywordStyle));
