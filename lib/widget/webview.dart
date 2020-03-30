@@ -18,11 +18,12 @@ class WebView extends StatefulWidget {
   final bool hideAppBar;
   final bool backForbid;
 
-  WebView({this.url,
-    this.statusBarColor,
-    this.title,
-    this.hideAppBar,
-    this.backForbid = false});
+  WebView(
+      {this.url,
+      this.statusBarColor,
+      this.title,
+      this.hideAppBar,
+      this.backForbid = false});
 
   @override
   _WebViewState createState() => _WebViewState();
@@ -82,7 +83,7 @@ class _WebViewState extends State<WebView> {
   Widget build(BuildContext context) {
     String statusBarColorStr = widget.statusBarColor ?? 'ffffff';
     Color btnColor =
-    statusBarColorStr == 'ffffff' ? Colors.black : Colors.white;
+        statusBarColorStr == 'ffffff' ? Colors.black : Colors.white;
     Color bgColor = Color(int.parse('0xff' + statusBarColorStr));
     return Scaffold(
       body: Column(
@@ -125,13 +126,12 @@ class _WebViewState extends State<WebView> {
             ),
             //标题
             Positioned(
-              child: Center(
-                child: Text(widget.title,
-                    style: TextStyle(color: bgColor, fontSize: 18.0)),
-              ),
-              left: 0,
-              right: 0,
-            )
+                child: Center(
+                  child: Text(widget.title,
+                      style: TextStyle(color: btnColor, fontSize: 18.0)),
+                ),
+                left: 0,
+                right: 0)
           ],
         ),
       ),

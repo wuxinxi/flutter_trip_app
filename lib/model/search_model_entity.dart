@@ -8,6 +8,7 @@ class SearchModelEntity with JsonConvert<SearchModelEntity> {
 	List<dynamic> resultTypes;
 	bool isLastPage;
 	List<dynamic> subResultTypes;
+	//用户输入
 	String keyWord;
 }
 
